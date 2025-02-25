@@ -65,7 +65,7 @@ globals().update(**EMAIL_CONFIG)
 # https://docs.djangoproject.com/fr/5.1/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DJANGO_DEFAULT_FROM_EMAIL",
-    default="sem <noreply@sem.com>",
+    default="djangostarter <noreply@djangostarter.com>",
 )
 
 # https://docs.djangoproject.com/fr/5.1/ref/settings/#server-email
@@ -74,7 +74,7 @@ SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/fr/5.1/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env(
     "DJANGO_EMAIL_SUBJECT_PREFIX",
-    default="[sem] ",
+    default="[djangostarter] ",
 )
 
 ADMIN_URL = env("DJANGO_ADMIN_URL")
