@@ -2,13 +2,12 @@
 <nav class="hidden md:block relative">
     <ul class="navitems flex items-center justify-center h-full gap-6">
         {% if request.user.is_authenticated %}
-        <!-- HOME START -->
-        <li><a href="/">Home</a></li>
-        <!-- HOME END -->
+        <!-- HOME -->
+        {% include "includes/components/home_items.html" %}
 
-        <!-- PROFILE START -->
+        <!-- PROFILE -->
         <li x-data="{ dropdownOpen: false }" class="relative">
-            <!-- FLECHE START -->
+            <!-- FLECHE -->
             <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
                 {% include "includes/components/avatar.html" %}
 
@@ -17,7 +16,6 @@
                 class="w-4 transition-transform duration-300 ease-in-out" 
                 src="https://img.icons8.com/small/32/text_navbar/expand-arrow.png" alt="Dropdown"/>
             </a>
-            <!-- FLECHE END -->
 
             <div x-show="dropdownOpen" 
                  x-cloak 
@@ -29,30 +27,16 @@
                  x-transition:leave-start="opacity-100 transform translate-y-0"
                  x-transition:leave-end="opacity-0 transform -translate-y-2">
                  <ul class="hoverlist [&>li>a]:justify-end">
-                    {% for item in profile_items %}
-                    <li>
-                        <a href="{% url item.url %}">
-                            {{ item.name }}
-                        </a>
-                    </li>
-                    {% endfor %}
+                    {% include "includes/components/users_items.html" %}
                 </ul>
             </div>
         </li>
-        <!-- PROFILE END -->
         
         {% else %}
-        <!-- LOGIN START -->
+        <!-- LOGIN -->
         <ul class="hoverlist [&>li>a]:justify-end flex flex-col items-center md:flex-row md:items-start">
-            {% for login_signup in login_signup_items %}
-            <li>
-                <a href="{% url login_signup.url %}">
-                    {{ login_signup.name }}
-                </a>
-            </li>
-            {% endfor %}
+            {% include "includes/components/login_signup_items.html" %}
         </ul>
-        <!-- LOGIN END -->
         {% endif %}
     </ul>
 </nav>

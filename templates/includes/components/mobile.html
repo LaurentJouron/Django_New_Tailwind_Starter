@@ -10,15 +10,10 @@
     class="absolute top-20 left-0 right-0 bg-navbar border-b border-text_navbar md:hidden">
     <ul class="px-4 py-2">
         {% if request.user.is_authenticated %}
-        <!-- HOME START -->
-        <li class="py-2">
-            <a href="/" class="navitems-mobile block">
-                Home
-            </a>
-        </li>
-        <!-- HOME END -->
+        <!-- HOME -->
+        {% include "includes/components/home_items.html" %}
 
-        <!-- PROFILE START -->
+        <!-- PROFILE -->
         <li x-data="{ profileOpen: false }" class="py-2">
             <div @click="profileOpen = !profileOpen" class="flex items-center justify-between cursor-pointer navitems-mobile">
                 <div class="flex items-center gap-2 flex-grow">
@@ -39,28 +34,15 @@
                 x-transition:leave-start="opacity-100 transform translate-y-0"
                 x-transition:leave-end="opacity-0 transform -translate-y-2"
                 class="hoverlist [&>li>a]:justify-end flex flex-col items-center md:flex-row md:items-start">
-                {% for profile in profile_items %}
-                <li>
-                    <a href="{% url profile.url %}">
-                        {{ profile.name }}
-                    </a>
-                </li>
-                {% endfor %}
+                {% include "includes/components/users_items.html" %}
             </ul>
         </li>
-        <!-- PROFILE END -->
+
     {% else %}
-        <!-- LOGIN START -->
+        <!-- LOGIN -->
         <ul class="hoverlist [&>li>a]:justify-end flex flex-col items-center md:flex-row md:items-start">
-            {% for login_signup in login_signup_items %}
-            <li>
-                <a href="{% url login_signup.url %}">
-                    {{ login_signup.name }}
-                </a>
-            </li>
-            {% endfor %}
+            {% include "includes/components/login_signup_items.html" %}
         </ul>
-        <!-- LOGIN END -->
     {% endif %}
     </ul>
 </nav>

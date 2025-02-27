@@ -6,14 +6,6 @@ def allauth_login_context(request):
     }
 
 
-def login_signup_items(request):
-    menu_items = [
-        {"name": "Login", "url": "account_login"},
-        {"name": "Signup", "url": "account_signup"},
-    ]
-    return {"login_signup_items": menu_items}
-
-
 def profile_items(request):
     menu_items = [
         {"name": "My profile", "url": "users:profile"},

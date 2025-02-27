@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     # Local apps
     "apps.home.apps.HomeConfig",
     "apps.users.apps.UsersConfig",
+    "jazzmin",
     # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -71,9 +72,10 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.media",
+                "apps.home.context_processors.home_items",
+                "apps.home.context_processors.login_signup_items",
                 "apps.users.context_processors.allauth_login_context",
                 "apps.users.context_processors.profile_items",
-                "apps.users.context_processors.login_signup_items",
             ],
         },
     },
@@ -272,3 +274,27 @@ ACCOUNT_USERNAME_BLACKLIST = [
     "webmaster",
     "theboss",
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Starter",
+    "site_header": "Django Starter",
+    "copyright": "Laurent Jouron",
+    "site_brand": "Django Starter",
+    "welcome_sign": "Welcome to the library",
+    "topmenu_links": [
+        {
+            "name": "Home",
+            "url": "admin:index",
+            "permissions": ["auth.view_user"],
+        },
+        {"model": "auth.User"},
+        {"app": "home"},
+        {"app": "users"},
+    ],
+    "show_ui_builder": True,
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+}
